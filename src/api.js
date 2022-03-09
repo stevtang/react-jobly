@@ -51,10 +51,15 @@ class JoblyApi {
   }
 
   static async getCompanyByNameFilter(filterInput){
-    let res = await this.request(`companies/name=${filterInput}`);
+    let res = await this.request(`companies/?name=${filterInput}`);
     return res.companies;
   }
 
+  /** Get all jobs */
+  static async getAllJobs(){
+    let res = await this.request(`jobs/`);
+    return res.companies;
+  }
   //TODO: general jobs request
 
   //TODO: Any other routes? Joins?

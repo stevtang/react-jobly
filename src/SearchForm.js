@@ -1,11 +1,13 @@
 import { useState } from "react";
 
 
-function SearchForm({accessInput}) {
+function SearchForm({addSearchCriteria}) {
 
    const [formData, setFormData] = useState("")
 
-   function handleSubmission(){
+   function handleSubmission(evt){
+      evt.preventDefault();
+      addSearchCriteria(formData);
       // TODO: complete this stub with the passed access Input function
    }
 
@@ -15,7 +17,7 @@ function SearchForm({accessInput}) {
    }
 
    return (
-      <form className="SearchForm">
+      <form className="SearchForm" onSubmit={handleSubmission}>
          <label htmlFor="userSearchInput"></label>
          <input 
          id="userSearchInput" 

@@ -28,19 +28,25 @@ function CompanyList() {
 
 
     // TODO: write function to use our new API call to filter by searchform data
+    async function filterCompaniesByInput(formData){
+        const response = await JoblyApi.getCompanyByNameFilter(formData);
+        console.log("response in filtercompany", response);
+        setCompanyList(response);
 
+    }
 
-    console.log(companyList)
+    // console.log(companyList);
 
 
     return (
         <div>
             { isFetching || 
             < div >
-                <SearchForm accessInput={}/>
+                <SearchForm addSearchCriteria={filterCompaniesByInput}/>
                 {companyList.map(comp => {
                 return(
                     <CompanyCard 
+                    key={comp.handle}
                     handle={comp.handle}
                     name={comp.name}
                     description={comp.description}

@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import JoblyApi from "./api";
 import JobCardList from "./JobCardList";
 import SearchForm from "./SearchForm";
 
@@ -5,8 +7,23 @@ import SearchForm from "./SearchForm";
 function JobList(){
 console.log("Entering JobList Component");
 
+    const [jobsList, setJobsList] = useState([]);
+    const [isFetching, setIsFetching] =useState(true);
+
+
+    useEffect(function fetchJobsOnMount(){
+        async function fetchJobs(){
+            setJobsList(await JoblyApi.getAllJobs());
+            setIsFetching(false);
+        }
+        fetchJobs();
+    }, []);
+    async function filterJobsByInput(formData){
+
+    }
+
     return (<div>JobList
-        <SearchForm />
+        <SearchForm addSearchCriteria={filterJobsByInput}/>
         <JobCardList />
     </div>);
 }
