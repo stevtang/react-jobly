@@ -29,6 +29,3 @@ console.log("Entering Routes Component");
 }
 
 export default Routes;
-// TODO: CR: add 404
-// CR: add your console logs in all componenets
-// WE got here, here are our props

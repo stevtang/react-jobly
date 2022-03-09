@@ -3,31 +3,41 @@ import SearchForm from "./SearchForm";
 import JoblyApi from "./api";
 import { useEffect, useState } from "react";
 
- 
 
-function CompanyList(){
-console.log("Entering CompanyList Component");
+
+function CompanyList() {
+    console.log("Entering CompanyList Component");
+    
     const [isFetching, setIsFetching] = useState(true);
     const [companyList, setCompanyList] = useState([]);
 
+    console.log("CompanyList state isFetching",isFetching);
+    console.log("CompanyList state companyList",companyList);
+
+
     useEffect(function fetchCompaniesOnMount() {
-        async function fetchCompanies(){
+        console.log("inside fetchCompaniesOnMount")
+        async function fetchCompanies() {
+             console.log("inside async fetchCompanies")
             setCompanyList(await JoblyApi.getAllCompanies())
             // return await JoblyApi.getAllCompanies();
         }
         fetchCompanies();
+        setIsFetching(false);
     }, []);
 
 
-    
-    
+    console.log(companyList)
+
 
     return (
-    <div>
-        CompanyList
-        <SearchForm />
-        <CompanyCard />
-    </div>
+        <div>
+            { isFetching || 
+            < div >
+                <SearchForm/>
+                <CompanyCard/>
+            </div >}
+        </div>
         );
 }
 

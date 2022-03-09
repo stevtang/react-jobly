@@ -1,5 +1,7 @@
+// TODO: update the doc string. Clarify the props
 
-function CompanyCard(){
+
+function CompanyCard({companyList}){
     return (
         <div>Company Card</div>
     )
