@@ -37,6 +37,10 @@
   }
 }
 
-.NavBar a:active{
-  color:red;
+.NavBar a.active {
+  color: red;
+}
+
+.NavBar-link {
+  margin: 5px;
 }
