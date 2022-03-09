@@ -1,5 +1,5 @@
 
-function JobCard() {
+function JobCard({title, salary, equity}) {
 console.log("Entering JobCard Component");
 
     return (

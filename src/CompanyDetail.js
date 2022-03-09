@@ -8,11 +8,13 @@ console.log("Entering CompanyDetail Component");
 
     const [companyDetails, setCompanyDetails] = useState({})
     const [isFetching, setIsFetching] = useState(true);
-
+    
     const params = useParams()
-
+    console.log("inside company detail params:", params);
     useEffect(function fetchCompanyDetailOnMount(){
+        console.log("inside fetchCompanyDetailOnMount")
         async function fetchCompanyDetail(){
+            console.log("inside fetchCompanyDetail")
             const response = await JoblyApi.getCompany(params.handle)
             setCompanyDetails(response);
 
@@ -21,11 +23,15 @@ console.log("Entering CompanyDetail Component");
         setIsFetching(false);
     }, [])
 
-    console.log(companyDetails)
+    console.log("jobs:", companyDetails.jobs)
+    if(isFetching){
+        return <h1>Loading...</h1>
+    }
 
     return (
-        <div>CompanyDetail
-            <JobCardList />
+        <div>
+            {isFetching ||
+            <JobCardList jobsList={companyDetails.jobs} />}
         </div>
     );
 }
