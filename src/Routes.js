@@ -6,6 +6,8 @@ import JobList from './JobList';
 import { Redirect } from 'react-router-dom';
 
 function Routes(){
+console.log("Entering Routes Component");
+
     return(
         <Switch>
           <Route exact path='/'>

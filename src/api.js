@@ -44,9 +44,17 @@ class JoblyApi {
     return res.company;
   }
 
+  /** Get all companies */
+  static async getAllCompanies(){
+    let res = await this.request(`companies/`);
+    return res.companies;
+  }
+
   //TODO: general company request
 
   //TODO: general jobs request
 
   //TODO: Any other routes? Joins?
 }
+
+export default JoblyApi;

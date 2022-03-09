@@ -1,5 +1,7 @@
 
 function JobCard() {
+console.log("Entering JobCard Component");
+
     return (
         <div>JobCard</div>
     )

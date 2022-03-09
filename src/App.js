@@ -12,6 +12,8 @@ import Routes from './Routes';
  * 
  */
 function App() {
+console.log("Entering App Component");
+
   return (
     <div className="App">
       <BrowserRouter>

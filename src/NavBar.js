@@ -9,6 +9,9 @@ import { NavLink } from "react-router-dom";
  * 
  */
 function NavBar() {
+console.log("Entering NavBar Component");
+
+
   return (
     <nav className="NavBar">
       <NavLink className="NavBar-link" exact to="/">
