@@ -50,7 +50,10 @@ class JoblyApi {
     return res.companies;
   }
 
-  //TODO: general company request
+  static async getCompanyByNameFilter(filterInput){
+    let res = await this.request(`companies/name=${filterInput}`);
+    return res.companies;
+  }
 
   //TODO: general jobs request
 

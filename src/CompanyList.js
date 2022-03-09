@@ -27,6 +27,9 @@ function CompanyList() {
     }, []);
 
 
+    // TODO: write function to use our new API call to filter by searchform data
+
+
     console.log(companyList)
 
 
@@ -34,7 +37,7 @@ function CompanyList() {
         <div>
             { isFetching || 
             < div >
-                <SearchForm/>
+                <SearchForm accessInput={}/>
                 {companyList.map(comp => {
                 return(
                     <CompanyCard 

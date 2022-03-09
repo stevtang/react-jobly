@@ -1,16 +1,7 @@
-.CompanyCard{
+.JobCard{
     margin:20px;
     width: 600px;
     border-style: solid;
     border-color: black;
     color: black;
 }
-
-a{
-    text-decoration: none;
-}
-
-.CompanyCardImage{
-    width:50px;
-}
-
