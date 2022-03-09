@@ -1,9 +1,14 @@
 // TODO: update the doc string. Clarify the props
+import { Link } from "react-router-dom";
 
-
-function CompanyCard({companyList}){
+function CompanyCard({handle, name, description, numEmployees, logoUrl="/logos/default_image.png"}){
+    console.log("Entering CompanyCard, data:", logoUrl);
     return (
-        <div>Company Card</div>
+        <Link>
+            <h1>{name}</h1>
+            <p>{description}</p>
+            <img src={logoUrl} alt="logo"/>
+        </Link>
     )
 }
 

@@ -35,7 +35,16 @@ function CompanyList() {
             { isFetching || 
             < div >
                 <SearchForm/>
-                <CompanyCard/>
+                {companyList.map(comp => {
+                return(
+                    <CompanyCard 
+                    handle={comp.handle}
+                    name={comp.name}
+                    description={comp.description}
+                    numEmployees={comp.numEmployees}
+                    logoUrl={comp.logoUrl}/>
+                )})}
+                
             </div >}
         </div>
         );
