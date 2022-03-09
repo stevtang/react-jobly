@@ -3,6 +3,7 @@ import Homepage from './Homepage';
 import CompanyList from './CompanyList';
 import CompanyDetail from './CompanyDetail';
 import JobList from './JobList';
+import { Redirect } from 'react-router-dom';
 
 function Routes(){
     return(
@@ -19,10 +20,13 @@ function Routes(){
           <Route  exact path='/jobs'>
             <JobList />
           </Route>
-          
+          <Redirect to="/" />
         </Switch>
     )
 
 }
 
 export default Routes;
+// TODO: CR: add 404
+// CR: add your console logs in all componenets
+// WE got here, here are our props
