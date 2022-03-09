@@ -29,7 +29,7 @@ Props: None
 State: 	
 -isFetching
 -companyList
--userFormResponse
+-userFormResponse //probably wont need this
 
 CompanyListDisplay (presentational) —> SearchBar
 Props: companyList (which should include links, logos, blurb, etc)
@@ -41,7 +41,7 @@ State: formInput
 
 
 ###
-CompanyURLHandler (logical) -> CompanyPage
+CompanyDetail (logical) -> CompanyPage
 Props: none (gets data from URL param)
 State: Loading (fetching data)
 Purpose: makes axios request based on URL param
