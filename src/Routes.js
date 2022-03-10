@@ -16,7 +16,7 @@ import Logout from './Logout';
  *  State: None
  * 
  */
-function Routes() {
+function Routes({handleLogin}) {
   console.log("Entering Routes Component");
 
   return (
@@ -34,7 +34,7 @@ function Routes() {
         <JobList />
       </Route>
       <Route exact path='/login'>
-        <LoginForm />
+        <LoginForm handleLogin={handleLogin}/>
       </Route>
       <Route exact path='/signup'>
         <SignUpForm />

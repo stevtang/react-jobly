@@ -13,9 +13,10 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 class JoblyApi {
 
   // DON'T MODIFY THIS TOKEN
-  static token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-    "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-    "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+  // static token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
+  //   "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
+  //   "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+  static token = '';
 
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method);
@@ -67,6 +68,20 @@ class JoblyApi {
     let res = await this.request(`jobs/?title=${filterInput}`);
     return res.jobs;
   }
+
+  /** Login with username, password */
+  static async login(userInput){
+    let res = await this.request('auth/token', userInput, "post" );
+    JoblyApi.token = res.token;
+    return res.token;
+  }
+
+  /** Get user by username */
+  static async getUserByUsername(username){
+    let res = await this.request(`users/${username}` );
+    return res;
+  }
+
 }
 
 export default JoblyApi;

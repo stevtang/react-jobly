@@ -13,8 +13,9 @@ function LoginForm({ handleLogin }) {
     })
     console.log("Login formData", formData)
 
-    function handleSubmission() {
-        return null;
+    function handleSubmission(evt) {
+        evt.preventDefault();
+        handleLogin(formData);
     }
 
     function handleChange(evt) {
