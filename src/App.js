@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter} from 'react-router-dom/cjs/react-router-dom.min';
 import NavBar from './NavBar';
 import Routes from './Routes';
+import { useState } from 'react';
 
 
 /**
@@ -13,12 +14,18 @@ import Routes from './Routes';
  */
 function App() {
 console.log("Entering App Component");
+  const [user, setUser] = useState({});
 
+  
+  function handleLogin(formData){
+
+  }
+ 
   return (
     <div className="App">
       <BrowserRouter>
         <NavBar />
-        <Routes />
+        <Routes handleLogin={handleLogin}/>
       </BrowserRouter>
     </div>
   );

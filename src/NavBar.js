@@ -21,6 +21,18 @@ function NavBar() {
       <NavLink className="NavBar-link" exact to="/jobs">
         Jobs
       </NavLink>
+      <NavLink className="NavBar-link" exact to="/login">
+        Login
+      </NavLink>
+      <NavLink className="NavBar-link" exact to="/signup">
+        Sign Up
+      </NavLink>
+      <NavLink className="NavBar-link" exact to="/profile">
+        Profile
+      </NavLink>
+      <NavLink className="NavBar-link" exact to="/logout">
+        Logout
+      </NavLink>
     </nav>
   );
 }
