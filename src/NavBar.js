@@ -1,16 +1,14 @@
 import { NavLink } from "react-router-dom";
 
-
 /**
  *  Renders Navigation bar with links to home, companies, jobs
- *  
+ *
  *  Props: None
  *  State: None
- * 
+ *
  */
 function NavBar() {
-console.log("Entering NavBar Component");
-
+  console.log("Entering NavBar Component");
 
   return (
     <nav className="NavBar">

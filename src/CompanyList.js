@@ -47,6 +47,8 @@ function CompanyList() {
     }
 
 
+    // CR: might not need isFetching || VVV
+    // CR: could pass down company obj and destructure in compcard, 
     return (
         <div>
             {isFetching ||

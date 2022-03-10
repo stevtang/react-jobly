@@ -15,6 +15,7 @@ function CompanyCard({ handle, name, description, numEmployees, logoUrl }) {
     let logo = logoUrl ? logoUrl : "/logos/default_image.png";
 
     console.log("Entering CompanyCard, data:", logoUrl);
+    // CR: wrap link with div and give classname to div not Link
     return (
         <Link className="CompanyCardLink" to={`/companies/${handle}`}>
             <div className="CompanyCard">
