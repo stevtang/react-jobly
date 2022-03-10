@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "./UserContext";
 
 /**
  *  Renders Navigation bar with links to home, companies, jobs
@@ -9,7 +11,8 @@ import { NavLink } from "react-router-dom";
  */
 function NavBar() {
   console.log("Entering NavBar Component");
-
+  const { username } = useContext(UserContext);
+  console.log("NavBar use context username", username);
   return (
     <nav className="NavBar">
       <NavLink className="NavBar-link" exact to="/">
@@ -31,7 +34,7 @@ function NavBar() {
         Profile
       </NavLink>
       <NavLink className="NavBar-link" exact to="/logout">
-        Logout
+        Logout User: {username}
       </NavLink>
     </nav>
   );

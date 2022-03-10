@@ -6,6 +6,10 @@ import { useEffect, useState } from "react";
 import JoblyApi from "./api";
 import jwt_decode from "jwt-decode";
 
+import UserContext from "./UserContext";
+
+
+
 /**
  *  Renders NavBar and Routes
  *
@@ -17,16 +21,14 @@ function App() {
   console.log("Entering App Component");
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
-
-  const payload = jwt_decode(token);
-  console.log(payload);
   
   useEffect(function XYZ(){
     async function ABC(){
       const payload = jwt_decode(token);
-      console.log(payload);
-      // const userLoggedIn = await JoblyApi.getUserByUsername(formData.username);
-      // setUser(userLoggedIn);
+      console.log("payload",payload);
+      const currUser = await JoblyApi.getUserByUsername(payload.username);
+      console.log("currUser", currUser.user);
+      setUser(currUser);
     }
     ABC();
   }, [token]);
@@ -37,12 +39,19 @@ function App() {
     setToken(() => token)
   }
 
+  const username = user?.username;
+  console.log("username in app", username);
+
+
+
   return (
     <div className="App">
+      <UserContext.Provider value={{username}}>
       <BrowserRouter>
         <NavBar />
         <Routes handleLogin={handleLogin} />
       </BrowserRouter>
+      </UserContext.Provider>
     </div>
   );
 }
