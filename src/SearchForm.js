@@ -8,7 +8,6 @@ function SearchForm({addSearchCriteria}) {
    function handleSubmission(evt){
       evt.preventDefault();
       addSearchCriteria(formData);
-      // TODO: complete this stub with the passed access Input function
    }
 
    function handleChange(evt){
