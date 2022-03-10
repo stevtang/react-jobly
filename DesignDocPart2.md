@@ -31,8 +31,43 @@ NavBar (presentational) -> (
 Props: None
 State: None
 
+### (rendered in NavBar if not logged in)
+LoginForm 
+input: username, password
+Props: handleLogin() from parent
+State: formData
 
 
+### (rendered in NavBar if not logged in)
+SignUpForm
+input: username, password, firstname, lastname, email
+Props: handleSignUp() from parent
+State: formData
+
+### (rendered in NavBar if logged in)
+LogOutButton
+
+### 
+ProfileForm
+inputs with default values: username, firstname, lastname, email
+Props: handleSaveChanges() from parent
+State: formData
+
+###
+JobCardList -> JobCard -> ApplyStatusButton
+Props: joblist(job title, company name, salary, equity)
+State: isFetching(fetching application status)
+
+###
+ApplyStatusButton (component)
+Props: handleApplication() from parent 
+State: None
+
+Routes:
+
+/profile
+/login 
+/signup
 
 
 As a part of authenticating a user, update the context from null to user data.
