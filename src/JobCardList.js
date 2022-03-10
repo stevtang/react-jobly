@@ -7,7 +7,8 @@ console.log("Entering JobCardList Component", jobsList);
         <div>
         {jobsList.map(job => {
             return(
-                <JobCard 
+                <JobCard
+                key={job.id}
                 title={job.title}
                 salary={job.salary}
                 equity={job.equity}/>)

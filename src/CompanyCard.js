@@ -2,10 +2,17 @@
 import { Link } from "react-router-dom";
 import "./CompanyCard.css"
 
+/**
+ *  Renders a Link component containing company details
+ * 
+ *  Props: handle, name, description, numEmployees, logoUrl 
+ * 
+ *  State: None
+ */
 function CompanyCard({ handle, name, description, numEmployees, logoUrl }) {
 
     // Ternary to use placeholder since we are destructuring the prop above
-    let logo = logoUrl ? logoUrl : "/logos/default_image.png"
+    let logo = logoUrl ? logoUrl : "/logos/default_image.png";
 
     console.log("Entering CompanyCard, data:", logoUrl);
     return (
@@ -17,7 +24,7 @@ function CompanyCard({ handle, name, description, numEmployees, logoUrl }) {
                 <p>Total Employees: {numEmployees}</p>
             </div>
         </Link>
-    )
+    );
 }
 
 export default CompanyCard;
