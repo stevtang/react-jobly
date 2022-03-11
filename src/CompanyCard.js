@@ -1,4 +1,3 @@
-// TODO: update the doc string. Clarify the props
 import { Link } from "react-router-dom";
 import "./CompanyCard.css"
 

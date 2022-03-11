@@ -1,11 +1,18 @@
 import { useState } from "react";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
+
+/**
+ *  Handles user login by providing form data to a submission handling
+ * function
+ *
+ *  Props: handleLogin (fn)
+ *  State:
+ *  - formSubmitted: boolean. Triggers redirect after submission of formData
+ *  - formData: like {username, password}
+ *
+ */
 function LoginForm({ handleLogin }) {
-
-
-    // TODO: Update the handleSubmission with correct fn
-    // TODO: Style the form
 
     const [formData, setFormData] = useState({
         username: "",
@@ -15,10 +22,13 @@ function LoginForm({ handleLogin }) {
 
     const [formSubmitted, setFormSubmitted] = useState(false);
 
+    //TODO:  Wrap a try / catch around our handleLogin function
+    //TODO: We will want to await our handle login and then switch to async fn
+    //TODO: May need an error state
     function handleSubmission(evt) {
         evt.preventDefault();
         handleLogin(formData);
-        setFormSubmitted(true)
+        setFormSubmitted(true);
     }
 
     function handleChange(evt) {
@@ -29,9 +39,9 @@ function LoginForm({ handleLogin }) {
         }));
     }
 
-    if(formSubmitted){
+    if (formSubmitted) {
         return <Redirect push to="/companies" />
-      }
+    }
 
     return (
         <form className="LoginForm" onSubmit={handleSubmission}>
@@ -51,18 +61,18 @@ function LoginForm({ handleLogin }) {
                     <label htmlFor="password">Password</label>
                 </div>
                 <div>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                ></input>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                    ></input>
                 </div>
             </div>
-            
+
             <button>Submit</button>
-            
+
         </form>
     )
 }

@@ -17,7 +17,7 @@ function CompanyDetail() {
 
     const [companyDetails, setCompanyDetails] = useState({});
     const [isFetching, setIsFetching] = useState(true);
-// CR: destructure handle from useParams
+    // CR: destructure handle from useParams
     const params = useParams();
     console.log("inside company detail params:", params);
     useEffect(function fetchCompanyDetailOnMount() {
@@ -34,7 +34,7 @@ function CompanyDetail() {
         return <h1>Loading...</h1>
     }
 
-// CR: remove isFetching || vvv
+    // CR: remove isFetching || vvv
 
     return (
         <div>

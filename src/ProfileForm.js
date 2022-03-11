@@ -3,7 +3,13 @@ import UserContext from "./UserContext";
 import { useContext } from "react";
 
 
-
+/**
+ *  Allows user to input data to update user profile information
+ *
+ *  Props: None
+ *  State: formData like {username, firstName, lastName, email}
+ *
+ */
 function ProfileForm() {
 
   const { user } = useContext(UserContext);
@@ -39,7 +45,7 @@ function ProfileForm() {
           name="username"
           value={formData.username}
           onChange={handleChange}
-          
+
         ></input>
       </div>
       <div>

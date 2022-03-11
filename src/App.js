@@ -12,14 +12,13 @@ import { Redirect } from "react-router-dom";
 // TODO: Consider graceful error handling for our API routes. Maybe try/catch
 // TODO: Maybe add alert component
 
-// TODO: QUESTION TO REVIEWERS - Does order of React hooks matter? We were getting
-// errors when we put useContext(UserContext) ahead of our state and useEffects
-
 /**
- *  Renders NavBar and Routes
+ *  Renders NavBar and Routes. Handles user authentication logic
  *
  *  Props: None
- *  State: None
+ *  State: 
+ *  - token: When updated, JWT token
+ *  - user: When updated, object like {username, firstName, ...}
  *
  */
 function App() {
@@ -40,27 +39,28 @@ function App() {
     }
   }, [token]);
 
-
+  // Change the argument to something more generic like loginData/loginInfo
   async function handleLogin(formData) {
     const token = await JoblyApi.login(formData);
-    setToken(() => token)
+    setToken(() => token);
   }
- 
-  async function handleSignUp(formData){
+
+  async function handleSignUp(formData) {
     const token = await JoblyApi.signUp(formData);
-    setToken(()=> token);
+    setToken(() => token);
   }
-  function handleLogout(){
+  function handleLogout() {
+    console.log("we made it to handleLogout");
     setToken(null);
     setUser(null);
   }
-  
+
   return (
     <div className="App">
       <UserContext.Provider value={{ user }}>
         <BrowserRouter>
-          <NavBar />
-          <Routes handleLogin={handleLogin} handleSignUp={handleSignUp} handleLogout={handleLogout}/>
+          <NavBar handleLogout={handleLogout} />
+          <Routes handleLogin={handleLogin} handleSignUp={handleSignUp} />
         </BrowserRouter>
       </UserContext.Provider>
     </div>

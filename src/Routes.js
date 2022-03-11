@@ -13,15 +13,18 @@ import { useContext } from "react";
 /**
  *  Handles routes across the site.
  *
- *  Props: None
+ *  Props: TODO: add props
  *  State: None
+ *  Context: TODO:
  *
  */
 function Routes({ handleLogin, handleSignUp }) {
   console.log("Entering Routes Component");
+
+  // TODO: Make sure you add context in the docstring as well
   const { user } = useContext(UserContext);
   return (
-    <Switch>
+    <>
       {!user && (
         <Switch>
           <Route exact path="/">
@@ -33,11 +36,15 @@ function Routes({ handleLogin, handleSignUp }) {
           <Route exact path="/signup">
             <SignUpForm handleSignUp={handleSignUp} />
           </Route>
-
+          <Redirect to="/" />
         </Switch>
       )}
+
       {user && (
         <Switch>
+          <Route exact path="/">
+            <Homepage />
+          </Route>
           <Route exact path="/companies">
             <CompanyList />
           </Route>
@@ -47,15 +54,13 @@ function Routes({ handleLogin, handleSignUp }) {
           <Route exact path="/jobs">
             <JobList />
           </Route>
-
           <Route exact path="/profile">
             <ProfileForm />
           </Route>
+          <Redirect to="/" />
         </Switch>
       )}
-
-      <Redirect to="/" />
-    </Switch>
+    </>
   );
 }
 

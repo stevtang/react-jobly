@@ -6,11 +6,11 @@ import Logout from "./Logout";
 /**
  *  Renders Navigation bar with links to home, companies, jobs
  *
- *  Props: None
+ *  Props: handleLogout
  *  State: None
  *
  */
-function NavBar({handleLogout}) {
+function NavBar({ handleLogout }) {
   console.log("Entering NavBar Component");
   const { user } = useContext(UserContext);
   console.log("NavBar use context user", user);
@@ -19,6 +19,7 @@ function NavBar({handleLogout}) {
       <NavLink className="NavBar-link" exact to="/">
         Jobly
       </NavLink>
+
       {user && <div>
         <NavLink className="NavBar-link" exact to="/companies">
           Companies
@@ -29,10 +30,9 @@ function NavBar({handleLogout}) {
         <NavLink className="NavBar-link" exact to="/profile">
           Profile
         </NavLink>
-        <NavLink className="NavBar-link" exact to="/logout">
-          <Logout handleLogout={handleLogout}/> {user.username}
-        </NavLink>
+        <Logout handleLogout={handleLogout} /> {user.username}
       </div>}
+
       {!user && <div>
         <NavLink className="NavBar-link" exact to="/login">
           Login

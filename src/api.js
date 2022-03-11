@@ -70,20 +70,20 @@ class JoblyApi {
   }
 
   /** Login with username, password */
-  static async login(userInput){
-    let res = await this.request('auth/token', userInput, "post" );
+  static async login(userInput) {
+    let res = await this.request('auth/token', userInput, "post");
     JoblyApi.token = res.token;
     return res.token;
   }
 
   /** Get user by username */
-  static async getUserByUsername(username){
-    let res = await this.request(`users/${username}` );
+  static async getUserByUsername(username) {
+    let res = await this.request(`users/${username}`);
     return res;
   }
   /** Register with username, password, firstname, lastname, email */
-  static async signUp(userInput){
-    let res = await this.request('auth/register', userInput, "post" );
+  static async signUp(userInput) {
+    let res = await this.request('auth/register', userInput, "post");
     JoblyApi.token = res.token;
     return res.token;
   }

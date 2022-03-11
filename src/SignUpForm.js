@@ -2,11 +2,18 @@ import { useState } from "react";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 
-function SignUpForm({handleSignUp}) {
+/**
+ *  Handles registering a new user by providing form data to a submission handling
+ * function
+ *
+ *  Props: handleSignup (fn)
+ *  State:
+ *  - formSubmitted: boolean. Triggers redirect after submission of formData
+ *  - formData: like {username, password, ...}
+ *
+ */
+function SignUpForm({ handleSignUp }) {
 
-
-    // TODO: Update the handleSubmission with correct fn
-    // TODO: Style the form
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [formData, setFormData] = useState({
         username: "",
@@ -31,11 +38,9 @@ function SignUpForm({handleSignUp}) {
         }));
     }
 
-
-    if(formSubmitted){
+    if (formSubmitted) {
         return <Redirect push to="/companies" />
-      }
-
+    }
 
     return (
         <form className="ProfileForm" onSubmit={handleSubmission}>
