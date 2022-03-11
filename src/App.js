@@ -21,16 +21,18 @@ function App() {
   console.log("Entering App Component");
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
-  
-  useEffect(function XYZ(){
-    async function ABC(){
+
+  useEffect(function getUserOnTokenChange() {
+    async function fetchUserData() {
       const payload = jwt_decode(token);
-      console.log("payload",payload);
+      console.log("payload", payload);
       const currUser = await JoblyApi.getUserByUsername(payload.username);
       console.log("currUser", currUser.user);
-      setUser(currUser);
+      setUser(currUser.user);
     }
-    ABC();
+    if (token !== "") {
+      fetchUserData();
+    }
   }, [token]);
 
 
@@ -38,19 +40,14 @@ function App() {
     const token = await JoblyApi.login(formData);
     setToken(() => token)
   }
-
-  const username = user?.username;
-  console.log("username in app", username);
-
-
-
+  
   return (
     <div className="App">
-      <UserContext.Provider value={{username}}>
-      <BrowserRouter>
-        <NavBar />
-        <Routes handleLogin={handleLogin} />
-      </BrowserRouter>
+      <UserContext.Provider value={{ user }}>
+        <BrowserRouter>
+          <NavBar />
+          <Routes handleLogin={handleLogin} />
+        </BrowserRouter>
       </UserContext.Provider>
     </div>
   );

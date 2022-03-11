@@ -11,8 +11,8 @@ import UserContext from "./UserContext";
  */
 function NavBar() {
   console.log("Entering NavBar Component");
-  const { username } = useContext(UserContext);
-  console.log("NavBar use context username", username);
+  const { user } = useContext(UserContext);
+  console.log("NavBar use context user", user);
   return (
     <nav className="NavBar">
       <NavLink className="NavBar-link" exact to="/">
@@ -34,7 +34,7 @@ function NavBar() {
         Profile
       </NavLink>
       <NavLink className="NavBar-link" exact to="/logout">
-        Logout User: {username}
+        Logout User: {user.username}
       </NavLink>
     </nav>
   );
