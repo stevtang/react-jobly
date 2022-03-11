@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "./UserContext";
+import Logout from "./Logout";
 
 /**
  *  Renders Navigation bar with links to home, companies, jobs
@@ -9,7 +10,7 @@ import UserContext from "./UserContext";
  *  State: None
  *
  */
-function NavBar() {
+function NavBar({handleLogout}) {
   console.log("Entering NavBar Component");
   const { user } = useContext(UserContext);
   console.log("NavBar use context user", user);
@@ -29,7 +30,7 @@ function NavBar() {
           Profile
         </NavLink>
         <NavLink className="NavBar-link" exact to="/logout">
-          Logout User: {user.username}
+          <Logout handleLogout={handleLogout}/> {user.username}
         </NavLink>
       </div>}
       {!user && <div>

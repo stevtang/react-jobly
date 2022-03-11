@@ -50,13 +50,17 @@ function App() {
     const token = await JoblyApi.signUp(formData);
     setToken(()=> token);
   }
+  function handleLogout(){
+    setToken(null);
+    setUser(null);
+  }
   
   return (
     <div className="App">
       <UserContext.Provider value={{ user }}>
         <BrowserRouter>
           <NavBar />
-          <Routes handleLogin={handleLogin} handleSignUp={handleSignUp}/>
+          <Routes handleLogin={handleLogin} handleSignUp={handleSignUp} handleLogout={handleLogout}/>
         </BrowserRouter>
       </UserContext.Provider>
     </div>
