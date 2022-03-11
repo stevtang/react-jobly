@@ -18,7 +18,7 @@ function NavBar() {
       <NavLink className="NavBar-link" exact to="/">
         Jobly
       </NavLink>
-      {Object.keys(user).length > 0 && <div>
+      {user && <div>
         <NavLink className="NavBar-link" exact to="/companies">
           Companies
         </NavLink>
@@ -32,7 +32,7 @@ function NavBar() {
           Logout User: {user.username}
         </NavLink>
       </div>}
-      {Object.keys(user).length < 1 && <div>
+      {!user && <div>
         <NavLink className="NavBar-link" exact to="/login">
           Login
         </NavLink>

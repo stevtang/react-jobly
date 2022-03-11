@@ -9,9 +9,9 @@ function Homepage() {
   return (
     <div>
       <div className="Homepage">
-        {Object.keys(user).length > 0    && <div>Welcome {user.username}!</div>}
+        {user && <div>Welcome {user.username}!</div>}
 
-        {Object.keys(user).length === 0 && <div>
+        {!user && <div>
           <Link className="Homepage-login-btn"  to="/login">
             <button>Login</button>
           </Link>

@@ -9,7 +9,11 @@ import jwt_decode from "jwt-decode";
 import UserContext from "./UserContext";
 import { Redirect } from "react-router-dom";
 
+// TODO: Consider graceful error handling for our API routes. Maybe try/catch
+// TODO: Maybe add alert component
 
+// TODO: QUESTION TO REVIEWERS - Does order of React hooks matter? We were getting
+// errors when we put useContext(UserContext) ahead of our state and useEffects
 
 /**
  *  Renders NavBar and Routes
@@ -20,8 +24,8 @@ import { Redirect } from "react-router-dom";
  */
 function App() {
   console.log("Entering App Component");
-  const [token, setToken] = useState("");
-  const [user, setUser] = useState({});
+  const [token, setToken] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(function getUserOnTokenChange() {
     async function fetchUserData() {
@@ -31,7 +35,7 @@ function App() {
       console.log("currUser", currUser.user);
       setUser(currUser.user);
     }
-    if (token !== "") {
+    if (token !== null) {
       fetchUserData();
     }
   }, [token]);
