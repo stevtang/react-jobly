@@ -23,9 +23,12 @@ import { Redirect } from "react-router-dom";
  */
 function App() {
   console.log("Entering App Component");
-  const [token, setToken] = useState(null);
+  console.log("localstorage first", localStorage.getItem("joblyToken") );
+  const [token, setToken] = useState(localStorage.getItem("joblyToken") || null);
   const [user, setUser] = useState(null);
 
+  
+  console.log("localstorage second", localStorage.getItem("joblyToken") );
   useEffect(function getUserOnTokenChange() {
     async function fetchUserData() {
       const payload = jwt_decode(token);
@@ -33,6 +36,7 @@ function App() {
       const currUser = await JoblyApi.getUserByUsername(payload.username);
       console.log("currUser", currUser.user);
       setUser(currUser.user);
+      localStorage.setItem("joblyToken", token);
     }
     if (token !== null) {
       fetchUserData();
@@ -53,6 +57,7 @@ function App() {
     console.log("we made it to handleLogout");
     setToken(null);
     setUser(null);
+    localStorage.removeItem('joblyToken');
   }
 
   return (
