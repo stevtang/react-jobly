@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
  *
  *  Props: None
  *  State: None
+ *  Context: User (username specifically)
  *
  */
 function Homepage() {

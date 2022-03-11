@@ -6,7 +6,13 @@ import { useContext } from "react";
  *  Allows user to input data to update user profile information
  *
  *  Props: None
- *  State: formData like {username, firstName, lastName, email}
+ * 
+ *  State: 
+ *  -formData like {username, firstName, lastName, email}
+ *  - isError: holds error array returned by backend for display
+ * 
+ *  Context: User (username, firstName, lastName, email)
+ *
  *
  */
 function ProfileForm({ updatePreferences }) {
@@ -41,7 +47,7 @@ function ProfileForm({ updatePreferences }) {
 
   return (
     <form className="ProfileForm" onSubmit={handleSubmission}>
-      {isError && isError.map((e,i) => <p key={i}>{e}</p>)}
+      {isError && isError.map((e, i) => <p key={i}>{e}</p>)}
       <div>
         <label htmlFor="username">Username</label>
       </div>

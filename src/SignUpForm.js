@@ -9,6 +9,7 @@ import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
  *  State:
  *  - formSubmitted: boolean. Triggers redirect after submission of formData
  *  - formData: like {username, password, ...}
+ *  - isError: holds error array returned by backend for display
  *
  */
 function SignUpForm({ handleSignUp }) {
@@ -29,7 +30,7 @@ function SignUpForm({ handleSignUp }) {
       await handleSignUp(formData);
       setFormSubmitted(true);
     } catch (error) {
-        console.log("error", error);
+      console.log("error", error);
       setIsError(error);
     }
   }
@@ -49,7 +50,7 @@ function SignUpForm({ handleSignUp }) {
   return (
     <form className="ProfileForm" onSubmit={handleSubmission}>
       <div>
-        {isError && isError.map((e,i) => <p key={i}>{e}</p>)}
+        {isError && isError.map((e, i) => <p key={i}>{e}</p>)}
         <label htmlFor="username">Username</label>
       </div>
       <div>

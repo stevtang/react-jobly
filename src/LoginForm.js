@@ -9,6 +9,7 @@ import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
  *  State:
  *  - formSubmitted: boolean. Triggers redirect after submission of formData
  *  - formData: like {username, password}
+ *  - isError: holds error array returned by backend for display
  *
  */
 function LoginForm({ handleLogin }) {
@@ -21,9 +22,6 @@ function LoginForm({ handleLogin }) {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isError, setIsError] = useState(null);
 
-  //TODO:  Wrap a try / catch around our handleLogin function
-  //TODO: We will want to await our handle login and then switch to async fn
-  //TODO: May need an error state
   async function handleSubmission(evt) {
     evt.preventDefault();
     try {
@@ -49,7 +47,7 @@ function LoginForm({ handleLogin }) {
   return (
     <form className="LoginForm" onSubmit={handleSubmission}>
       <div>
-      {isError && isError.map((e,i) => <p key={i}>{e}</p>)}
+        {isError && isError.map((e, i) => <p key={i}>{e}</p>)}
         <div>
           <label htmlFor="username">Username</label>
         </div>

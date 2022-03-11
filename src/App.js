@@ -5,12 +5,7 @@ import Routes from "./Routes";
 import { useEffect, useState } from "react";
 import JoblyApi from "./api";
 import jwt_decode from "jwt-decode";
-
 import UserContext from "./UserContext";
-import { Redirect } from "react-router-dom";
-
-// TODO: Consider graceful error handling for our API routes. Maybe try/catch
-// TODO: Maybe add alert component
 
 /**
  *  Renders NavBar and Routes. Handles user authentication logic
@@ -28,7 +23,6 @@ function App() {
     localStorage.getItem("joblyToken") || null
   );
   const [user, setUser] = useState(null);
-  const [isError, setIsError] = useState(null);
 
   console.log("localstorage second", localStorage.getItem("joblyToken"));
   useEffect(
@@ -49,7 +43,6 @@ function App() {
     [token]
   );
 
-  // TODO: Change the argument to something more generic like loginData/loginInfo
   async function handleLogin(loginData) {
     const token = await JoblyApi.login(loginData);
     setToken(() => token);
@@ -68,13 +61,16 @@ function App() {
 
   async function handleUpdatePreferences(preferenceData) {
     const response = await JoblyApi.updatePreferences(preferenceData);
-    const { firstName, lastName, email } = response;
+    const { firstName, lastName, email } = response.user;
+
+    console.log("response", response)
+    console.log("Response first name", firstName)
 
     setUser((userData) => ({
       ...userData,
-      [firstName]: firstName,
-      [lastName]: lastName,
-      [email]: email,
+      firstName,
+      lastName,
+      email,
     }));
   }
 

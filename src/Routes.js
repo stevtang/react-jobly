@@ -13,15 +13,14 @@ import { useContext } from "react";
 /**
  *  Handles routes across the site.
  *
- *  Props: TODO: add props
+ *  Props: handleLogin (fn), handleSignup (fn), updatePreferences(fn)
  *  State: None
- *  Context: TODO:
+ *  Context: User
  *
  */
-function Routes({ handleLogin, handleSignUp, updatePreferences}) {
+function Routes({ handleLogin, handleSignUp, updatePreferences }) {
   console.log("Entering Routes Component");
 
-  // TODO: Make sure you add context in the docstring as well
   const { user } = useContext(UserContext);
   return (
     <>
@@ -55,7 +54,7 @@ function Routes({ handleLogin, handleSignUp, updatePreferences}) {
             <JobList />
           </Route>
           <Route exact path="/profile">
-            <ProfileForm updatePreferences={updatePreferences}/>
+            <ProfileForm updatePreferences={updatePreferences} />
           </Route>
           <Redirect to="/" />
         </Switch>
