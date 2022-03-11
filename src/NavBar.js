@@ -18,24 +18,28 @@ function NavBar() {
       <NavLink className="NavBar-link" exact to="/">
         Jobly
       </NavLink>
-      <NavLink className="NavBar-link" exact to="/companies">
-        Companies
-      </NavLink>
-      <NavLink className="NavBar-link" exact to="/jobs">
-        Jobs
-      </NavLink>
-      <NavLink className="NavBar-link" exact to="/login">
-        Login
-      </NavLink>
-      <NavLink className="NavBar-link" exact to="/signup">
-        Sign Up
-      </NavLink>
-      <NavLink className="NavBar-link" exact to="/profile">
-        Profile
-      </NavLink>
-      <NavLink className="NavBar-link" exact to="/logout">
-        Logout User: {user.username}
-      </NavLink>
+      {Object.keys(user).length > 0 && <div>
+        <NavLink className="NavBar-link" exact to="/companies">
+          Companies
+        </NavLink>
+        <NavLink className="NavBar-link" exact to="/jobs">
+          Jobs
+        </NavLink>
+        <NavLink className="NavBar-link" exact to="/profile">
+          Profile
+        </NavLink>
+        <NavLink className="NavBar-link" exact to="/logout">
+          Logout User: {user.username}
+        </NavLink>
+      </div>}
+      {Object.keys(user).length < 1 && <div>
+        <NavLink className="NavBar-link" exact to="/login">
+          Login
+        </NavLink>
+        <NavLink className="NavBar-link" exact to="/signup">
+          Sign Up
+        </NavLink>
+      </div>}
     </nav>
   );
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 function LoginForm({ handleLogin }) {
 
@@ -13,9 +13,12 @@ function LoginForm({ handleLogin }) {
     })
     console.log("Login formData", formData)
 
+    const [formSubmitted, setFormSubmitted] = useState(false);
+
     function handleSubmission(evt) {
         evt.preventDefault();
         handleLogin(formData);
+        setFormSubmitted(true)
     }
 
     function handleChange(evt) {
@@ -25,6 +28,10 @@ function LoginForm({ handleLogin }) {
             [name]: value,
         }));
     }
+
+    if(formSubmitted){
+        return <Redirect push to="/companies" />
+      }
 
     return (
         <form className="LoginForm" onSubmit={handleSubmission}>

@@ -17,7 +17,7 @@ function SearchForm({addSearchCriteria}) {
 
    return (
       <form className="SearchForm" onSubmit={handleSubmission}>
-         <label htmlFor="userSearchInput"></label>
+         <label htmlFor="userSearchInput">Search: </label>
          <input 
          id="userSearchInput" 
          name="userSearchInput"

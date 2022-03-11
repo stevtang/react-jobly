@@ -12,3 +12,15 @@ code {
     monospace;
 }
 /* add global styles, no underlined links  */
+
+.NavBar{
+  margin-bottom: 20px;
+}
+
+.NavBar a.active {
+  color: red;
+}
+
+.NavBar-link {
+  margin: 5px;
+}
