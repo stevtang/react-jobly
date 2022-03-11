@@ -53,7 +53,9 @@ function LoginForm({ handleLogin }) {
                 ></input>
                 </div>
             </div>
+            
             <button>Submit</button>
+            
         </form>
     )
 }
