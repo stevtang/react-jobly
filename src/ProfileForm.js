@@ -2,7 +2,6 @@ import { useState } from "react";
 import UserContext from "./UserContext";
 import { useContext } from "react";
 
-
 /**
  *  Allows user to input data to update user profile information
  *
@@ -10,25 +9,31 @@ import { useContext } from "react";
  *  State: formData like {username, firstName, lastName, email}
  *
  */
-function ProfileForm({updatePreferences}) {
-
+function ProfileForm({ updatePreferences }) {
   const { user } = useContext(UserContext);
+  const [isError, setIsError] = useState(null);
+
   const [formData, setFormData] = useState({
     username: user.username,
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email,
-  })
-  console.log("Profile formData", formData)
+  });
+  console.log("Profile formData", formData);
 
-  function handleSubmission(evt) {
+  async function handleSubmission(evt) {
     evt.preventDefault();
-    updatePreferences(formData)
+
+    try {
+      await updatePreferences(formData);
+    } catch (error) {
+      setIsError(error);
+    }
   }
 
   function handleChange(evt) {
     const { name, value } = evt.target;
-    setFormData(fData => ({
+    setFormData((fData) => ({
       ...fData,
       [name]: value,
     }));
@@ -36,6 +41,7 @@ function ProfileForm({updatePreferences}) {
 
   return (
     <form className="ProfileForm" onSubmit={handleSubmission}>
+      {isError && isError.map((e,i) => <p key={i}>{e}</p>)}
       <div>
         <label htmlFor="username">Username</label>
       </div>
@@ -46,7 +52,6 @@ function ProfileForm({updatePreferences}) {
           name="username"
           value={formData.username}
           onChange={handleChange}
-
         ></input>
       </div>
       <div>
@@ -84,7 +89,7 @@ function ProfileForm({updatePreferences}) {
       </div>
       <button>Save Changes</button>
     </form>
-  )
+  );
 }
 
 export default ProfileForm;

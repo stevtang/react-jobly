@@ -16,7 +16,7 @@ import { Redirect } from "react-router-dom";
  *  Renders NavBar and Routes. Handles user authentication logic
  *
  *  Props: None
- *  State: 
+ *  State:
  *  - token: When updated, JWT token
  *  - user: When updated, object like {username, firstName, ...}
  *
@@ -24,26 +24,30 @@ import { Redirect } from "react-router-dom";
 function App() {
   console.log("Entering App Component");
   console.log("localstorage first", localStorage.getItem("joblyToken"));
-  const [token, setToken] = useState(localStorage.getItem("joblyToken") || null);
+  const [token, setToken] = useState(
+    localStorage.getItem("joblyToken") || null
+  );
   const [user, setUser] = useState(null);
-
+  const [isError, setIsError] = useState(null);
 
   console.log("localstorage second", localStorage.getItem("joblyToken"));
-  useEffect(function getUserOnTokenChange() {
-    async function fetchUserData() {
-      const payload = jwt_decode(token);
-      console.log("payload", payload);
+  useEffect(
+    function getUserOnTokenChange() {
+      async function fetchUserData() {
+        const payload = jwt_decode(token);
+        console.log("payload", payload);
 
-      const currUser = await JoblyApi.getUserByUsername(payload.username);
-      console.log("currUser", currUser.user);
-
-      setUser(currUser.user);
-      localStorage.setItem("joblyToken", token);
-    }
-    if (token !== null) {
-      fetchUserData();
-    }
-  }, [token]);
+        const currUser = await JoblyApi.getUserByUsername(payload.username);
+        console.log("currUser", currUser.user);
+        setUser(currUser.user);
+        localStorage.setItem("joblyToken", token);
+      }
+      if (token !== null) {
+        fetchUserData();
+      }
+    },
+    [token]
+  );
 
   // TODO: Change the argument to something more generic like loginData/loginInfo
   async function handleLogin(loginData) {
@@ -59,20 +63,19 @@ function App() {
     console.log("we made it to handleLogout");
     setToken(null);
     setUser(null);
-    localStorage.removeItem('joblyToken');
+    localStorage.removeItem("joblyToken");
   }
 
-  async function handleUpdatePreferences(preferenceData){
-
-    const response = await JoblyApi.updatePreferences(preferenceData)
+  async function handleUpdatePreferences(preferenceData) {
+    const response = await JoblyApi.updatePreferences(preferenceData);
     const { firstName, lastName, email } = response;
 
-    setUser(userData => ({
+    setUser((userData) => ({
       ...userData,
       [firstName]: firstName,
       [lastName]: lastName,
       [email]: email,
-    }))
+    }));
   }
 
   return (
@@ -83,7 +86,8 @@ function App() {
           <Routes
             handleLogin={handleLogin}
             handleSignUp={handleSignUp}
-            updatePreferences={handleUpdatePreferences} />
+            updatePreferences={handleUpdatePreferences}
+          />
         </BrowserRouter>
       </UserContext.Provider>
     </div>
