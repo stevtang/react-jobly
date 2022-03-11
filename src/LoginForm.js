@@ -20,6 +20,7 @@ function LoginForm({ handleLogin }) {
   console.log("Login formData", formData);
 
   const [formSubmitted, setFormSubmitted] = useState(false);
+  // CR: rename isError to errors
   const [isError, setIsError] = useState(null);
 
   async function handleSubmission(evt) {

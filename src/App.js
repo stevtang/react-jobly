@@ -30,7 +30,7 @@ function App() {
       async function fetchUserData() {
         const payload = jwt_decode(token);
         console.log("payload", payload);
-
+        // CR: token validation, try/catch?
         const currUser = await JoblyApi.getUserByUsername(payload.username);
         console.log("currUser", currUser.user);
         setUser(currUser.user);
