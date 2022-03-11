@@ -42,13 +42,17 @@ function App() {
     setToken(() => token)
   }
  
+  async function handleSignUp(formData){
+    const token = await JoblyApi.signUp(formData);
+    setToken(()=> token);
+  }
   
   return (
     <div className="App">
       <UserContext.Provider value={{ user }}>
         <BrowserRouter>
           <NavBar />
-          <Routes handleLogin={handleLogin} />
+          <Routes handleLogin={handleLogin} handleSignUp={handleSignUp}/>
         </BrowserRouter>
       </UserContext.Provider>
     </div>

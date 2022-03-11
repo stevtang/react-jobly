@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
-function SignUpForm() {
+
+function SignUpForm({handleSignUp}) {
 
 
     // TODO: Update the handleSubmission with correct fn
     // TODO: Style the form
-
+    const [formSubmitted, setFormSubmitted] = useState(false);
     const [formData, setFormData] = useState({
         username: "",
         password: "",
@@ -15,8 +17,10 @@ function SignUpForm() {
     })
     console.log("Profile formData", formData)
 
-    function handleSubmission() {
-        return null;
+    function handleSubmission(evt) {
+        evt.preventDefault();
+        handleSignUp(formData);
+        setFormSubmitted(true);
     }
 
     function handleChange(evt) {
@@ -28,9 +32,9 @@ function SignUpForm() {
     }
 
 
-
-
-
+    if(formSubmitted){
+        return <Redirect push to="/companies" />
+      }
 
 
     return (

@@ -1,18 +1,17 @@
 import { useState } from "react";
-
+import UserContext from "./UserContext";
+import { useContext } from "react";
 
 
 
 function ProfileForm() {
 
-  // TODO: Update the below state to initialize with a prop about the user
-  // TODO: Update the handleSubmission with correct fn
-  // TODO: Style the form
+  const { user } = useContext(UserContext);
   const [formData, setFormData] = useState({
-    username: "",
-    firstName: "",
-    lastName: "",
-    email: ""
+    username: user.username,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
   })
   console.log("Profile formData", formData)
 
@@ -40,6 +39,7 @@ function ProfileForm() {
           name="username"
           value={formData.username}
           onChange={handleChange}
+          
         ></input>
       </div>
       <div>
