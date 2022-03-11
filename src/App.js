@@ -23,18 +23,20 @@ import { Redirect } from "react-router-dom";
  */
 function App() {
   console.log("Entering App Component");
-  console.log("localstorage first", localStorage.getItem("joblyToken") );
+  console.log("localstorage first", localStorage.getItem("joblyToken"));
   const [token, setToken] = useState(localStorage.getItem("joblyToken") || null);
   const [user, setUser] = useState(null);
 
-  
-  console.log("localstorage second", localStorage.getItem("joblyToken") );
+
+  console.log("localstorage second", localStorage.getItem("joblyToken"));
   useEffect(function getUserOnTokenChange() {
     async function fetchUserData() {
       const payload = jwt_decode(token);
       console.log("payload", payload);
+
       const currUser = await JoblyApi.getUserByUsername(payload.username);
       console.log("currUser", currUser.user);
+
       setUser(currUser.user);
       localStorage.setItem("joblyToken", token);
     }
@@ -43,14 +45,14 @@ function App() {
     }
   }, [token]);
 
-  // Change the argument to something more generic like loginData/loginInfo
-  async function handleLogin(formData) {
-    const token = await JoblyApi.login(formData);
+  // TODO: Change the argument to something more generic like loginData/loginInfo
+  async function handleLogin(loginData) {
+    const token = await JoblyApi.login(loginData);
     setToken(() => token);
   }
 
-  async function handleSignUp(formData) {
-    const token = await JoblyApi.signUp(formData);
+  async function handleSignUp(signupData) {
+    const token = await JoblyApi.signUp(signupData);
     setToken(() => token);
   }
   function handleLogout() {
@@ -60,12 +62,28 @@ function App() {
     localStorage.removeItem('joblyToken');
   }
 
+  async function handleUpdatePreferences(preferenceData){
+
+    const response = await JoblyApi.updatePreferences(preferenceData)
+    const { firstName, lastName, email } = response;
+
+    setUser(userData => ({
+      ...userData,
+      [firstName]: firstName,
+      [lastName]: lastName,
+      [email]: email,
+    }))
+  }
+
   return (
     <div className="App">
       <UserContext.Provider value={{ user }}>
         <BrowserRouter>
           <NavBar handleLogout={handleLogout} />
-          <Routes handleLogin={handleLogin} handleSignUp={handleSignUp} />
+          <Routes
+            handleLogin={handleLogin}
+            handleSignUp={handleSignUp}
+            updatePreferences={handleUpdatePreferences} />
         </BrowserRouter>
       </UserContext.Provider>
     </div>

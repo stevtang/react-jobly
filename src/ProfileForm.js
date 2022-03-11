@@ -10,7 +10,7 @@ import { useContext } from "react";
  *  State: formData like {username, firstName, lastName, email}
  *
  */
-function ProfileForm() {
+function ProfileForm({updatePreferences}) {
 
   const { user } = useContext(UserContext);
   const [formData, setFormData] = useState({
@@ -21,8 +21,9 @@ function ProfileForm() {
   })
   console.log("Profile formData", formData)
 
-  function handleSubmission() {
-    return null;
+  function handleSubmission(evt) {
+    evt.preventDefault();
+    updatePreferences(formData)
   }
 
   function handleChange(evt) {

@@ -16,7 +16,7 @@ class JoblyApi {
   // static token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
   //   "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
   //   "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
-  static token = '';
+  static token = (localStorage.getItem("joblyToken") || '');
 
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method);
@@ -81,11 +81,23 @@ class JoblyApi {
     let res = await this.request(`users/${username}`);
     return res;
   }
+
   /** Register with username, password, firstname, lastname, email */
   static async signUp(userInput) {
     let res = await this.request('auth/register', userInput, "post");
     JoblyApi.token = res.token;
     return res.token;
+  }
+
+  /** Update profile with input for username, firstname, lastname, email */
+  static async updatePreferences(userInput) {
+    const { firstName, lastName, email } = userInput;
+
+    let res = await this.request(
+      `users/${userInput.username}`,
+      { firstName, lastName, email },
+      "patch");
+    return res;
   }
 
 }

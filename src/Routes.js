@@ -18,7 +18,7 @@ import { useContext } from "react";
  *  Context: TODO:
  *
  */
-function Routes({ handleLogin, handleSignUp }) {
+function Routes({ handleLogin, handleSignUp, updatePreferences}) {
   console.log("Entering Routes Component");
 
   // TODO: Make sure you add context in the docstring as well
@@ -55,7 +55,7 @@ function Routes({ handleLogin, handleSignUp }) {
             <JobList />
           </Route>
           <Route exact path="/profile">
-            <ProfileForm />
+            <ProfileForm updatePreferences={updatePreferences}/>
           </Route>
           <Redirect to="/" />
         </Switch>
